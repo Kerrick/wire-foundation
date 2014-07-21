@@ -1,5 +1,32 @@
 @import "settings";
 @import "foundation";
+@import "compass";
+
+a {
+  text-decoration: underline;
+}
+
+.panel.callout {
+  @include panel(scale-color($primary-color, $lightness: 70%));
+}
+
+button, .button,
+.alert-box,
+.panel, .panel.callout {
+  $i: .05;
+  $grad: ();
+  @while $i < 1 {
+    $grad: append($grad, transparent percentage($i), comma);
+    $grad: append($grad, rgba(255, 255, 255, 0.1) percentage($i), comma);
+    $i: $i + .05;
+    $grad: append($grad, rgba(255, 255, 255, 0.1) percentage($i), comma);
+    $grad: append($grad, transparent percentage($i), comma);
+    $i: $i + .05;
+  }
+  @include background-image(unquote('-webkit-linear-gradient(-45deg, #{$grad})'));
+  @include background-image(unquote('-moz-linear-gradient(-45deg, #{$grad})'));
+  @include background-image(unquote('linear-gradient(-45deg, #{$grad})'));
+}
 
 // Or selectively include components
 // @import
